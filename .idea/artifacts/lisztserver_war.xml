@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="lisztserver:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/lisztserver</output-path>
+    <root id="archive" name="lisztserver.war">
+      <element id="artifact" artifact-name="lisztserver:war exploded" />
+    </root>
+  </artifact>
+</component>
