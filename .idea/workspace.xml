@@ -8,14 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="43247a5b-ec24-4377-8044-90c10bd0fc7b" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/lisztserver_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/lisztserver_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fish/eyebrow/liszt/lisztserver/DatabaseConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/lisztserver/lisztserver.war" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/lisztserver/lisztserver.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/lisztserver_war_exploded/WEB-INF/classes/fish/eyebrow/liszt/lisztserver/ListRequestHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/lisztserver_war_exploded/WEB-INF/classes/fish/eyebrow/liszt/lisztserver/ListRequestHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fish/eyebrow/liszt/lisztserver/ListRequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fish/eyebrow/liszt/lisztserver/ListRequestHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fish/eyebrow/liszt/lisztserver/ListRequestHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fish/eyebrow/liszt/lisztserver/ListRequestHandler.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,11 +44,23 @@
       <file leaf-file-name="ListRequestHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/fish/eyebrow/liszt/lisztserver/ListRequestHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="45" column="87" selection-start-line="45" selection-start-column="87" selection-end-line="45" selection-end-column="87" />
+            <state relative-caret-position="401">
+              <caret line="32" column="35" lean-forward="true" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#246#278#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DatabaseConnection.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/fish/eyebrow/liszt/lisztserver/DatabaseConnection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -63,8 +71,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -79,6 +87,7 @@
         <option value="$PROJECT_DIR$/src/main/java/fish/eyebrow/liszt/lisztserver/HelloWorld.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/fish/eyebrow/liszt/lisztserver/DatabaseConnection.java" />
         <option value="$PROJECT_DIR$/src/main/java/fish/eyebrow/liszt/lisztserver/ListRequestHandler.java" />
       </list>
     </option>
@@ -290,12 +299,12 @@
       <workItem from="1529809786765" duration="986000" />
       <workItem from="1529810805756" duration="2564000" />
       <workItem from="1529813743868" duration="2692000" />
-      <workItem from="1529819486039" duration="7945000" />
+      <workItem from="1529819486039" duration="8527000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17866000" />
+    <option name="totallyTimeSpent" value="18448000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -329,8 +338,8 @@
       <window_info anchor="bottom" id="Java Enterprise" order="7" weight="0.3288835" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32795697" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32903227" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32795697" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32903227" />
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49878642" visible="true" weight="0.2702252" />
       <window_info anchor="right" id="Bean Validation" order="4" />
       <window_info id="Web" order="2" sideWeight="0.5012136" side_tool="true" weight="0.25" />
@@ -515,10 +524,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fish/eyebrow/liszt/lisztserver/DatabaseConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fish/eyebrow/liszt/lisztserver/ListRequestHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="45" column="87" selection-start-line="45" selection-start-column="87" selection-end-line="45" selection-end-column="87" />
+        <state relative-caret-position="401">
+          <caret line="32" column="35" lean-forward="true" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#246#278#0" expanded="true" />
