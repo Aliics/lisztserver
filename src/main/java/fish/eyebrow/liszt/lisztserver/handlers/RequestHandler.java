@@ -1,7 +1,7 @@
 package fish.eyebrow.liszt.lisztserver.handlers;
 
-import fish.eyebrow.liszt.lisztserver.DatabaseUtils;
-import fish.eyebrow.liszt.lisztserver.RequestType;
+import fish.eyebrow.liszt.lisztserver.utils.DatabaseUtils;
+import fish.eyebrow.liszt.lisztserver.types.RequestType;
 import org.json.simple.JSONObject;
 
 import javax.ws.rs.GET;
