@@ -20,42 +20,45 @@ public class RequestHandler {
 	@Path( "/{param}" )
 	@Produces( MediaType.APPLICATION_JSON )
 	public String requestWithParamReply( @PathParam( "requestType" ) String requestType, @PathParam( "param" ) String param ) {
-		String parsedParam = param;
+		String parsedRequestType = requestType;
+		String parsedParam = param.split( " " )[ 0 ];
+		String dataRetrieved = null;
+		boolean updateSuccess = false;
+
+		switch ( requestType ) {
+			case RequestType.LIST_RETRIEVE:
+				String retrieveAllFromListData = "SELECT content FROM lists WHERE id='" + parsedParam + "'";
+
+				Connection connection = DatabaseUtils.connectToDatabase( "webapps/config.properties" );
+				ResultSet resultSet = DatabaseUtils.generateResultSetFromSqlAndConnection( connection, retrieveAllFromListData );
+
+				try {
+					if ( resultSet.next() )
+						dataRetrieved = resultSet.getString( "content" );
+				} catch ( SQLException e ) {
+					e.printStackTrace();
+				} finally {
+					DatabaseUtils.closeQuietly( resultSet );
+					DatabaseUtils.closeQuietly( connection );
+				}
+
+				break;
+			case RequestType.LIST_UPDATE:
+				updateSuccess = false;
+				break;
+			default:
+				parsedRequestType = null;
+				parsedParam = null;
+				break;
+		}
 
 		JSONObject jsonRequestReply = new JSONObject();
 		jsonRequestReply.put( "client-request-type", requestType );
 		jsonRequestReply.put( "client-param-passed", param );
-
-		switch ( requestType ) {
-			case RequestType.LIST_RETRIEVE:
-				parsedParam = param.split( " " )[ 0 ];
-
-				String jsonParamKey = "data-retrieved-from-params";
-
-				String retrieveAllFromListData = "SELECT content FROM lists WHERE id='" + parsedParam + "'";
-
-				Connection connection = DatabaseUtils.connectToDatabase( "webapps/config.properties" );
-				ResultSet resultSet = DatabaseUtils.generateResultSetFromSqlAndConnection( connection,  retrieveAllFromListData);
-
-				try {
-					if (resultSet.next())
-						jsonRequestReply.put( jsonParamKey, resultSet.getString( "content" ) );
-				} catch ( SQLException e ) {
-					e.printStackTrace();
-				} finally {
-					DatabaseUtils.closeQuietly( connection );
-					DatabaseUtils.closeQuietly( resultSet );
-
-					if ( jsonRequestReply.get( jsonParamKey ) == null )
-						jsonRequestReply.put( jsonParamKey, null ); // SEEMS REDUNDANT, BUT IT IS NECESSARY
-				}
-				break;
-			default:
-				jsonRequestReply.put( "client-request-type", "404" );
-				break;
-		}
-
-		jsonRequestReply.put( "param-parsed-by-server", parsedParam );
+		jsonRequestReply.put( "parsed-request-type", parsedRequestType );
+		jsonRequestReply.put( "parsed-param", parsedParam );
+		jsonRequestReply.put( "data-retrieved-from-params", dataRetrieved );
+		jsonRequestReply.put( "data-update-success", updateSuccess );
 
 		return jsonRequestReply.toString();
 	}
