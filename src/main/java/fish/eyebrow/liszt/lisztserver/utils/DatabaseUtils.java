@@ -19,20 +19,18 @@ public class DatabaseUtils {
 		return resultSet;
 	}
 
-	public static Connection connectToDatabase( String url, String database, String configPath ) {
+	public static Connection connectToDatabase( String dbUrl, String dbName, String configPath ) {
 		Connection connection = null;
 
 		try {
-			Class.forName( "com.mysql.jdbc.Driver" );
-
 			Properties config = new Properties();
 			config.load( new FileReader( configPath ) );
 
-			String username = ( String ) config.get( "db_username" );
-			String password = ( String ) config.get( "db_password" );
+			String dbUsername = ( String ) config.get( "db_username" );
+			String dbPassword = ( String ) config.get( "db_password" );
 
-			connection = DriverManager.getConnection( url + database, username, password );
-		} catch ( ClassNotFoundException | SQLException | IOException e ) {
+			connection = DriverManager.getConnection( dbUrl + dbName, dbUsername, dbPassword );
+		} catch ( SQLException | IOException e ) {
 			e.printStackTrace();
 		}
 
@@ -46,10 +44,10 @@ public class DatabaseUtils {
 			Properties config = new Properties();
 			config.load( new FileReader( configPath ) );
 
-			String url = ( String ) config.get( "db_url" );
-			String database = ( String ) config.get( "db_name" );
+			String dbUrl = ( String ) config.get( "db_url" );
+			String dbName = ( String ) config.get( "db_name" );
 
-			connection = connectToDatabase( url, database, configPath );
+			connection = connectToDatabase( dbUrl, dbName, configPath );
 		} catch ( IOException e ) {
 			e.printStackTrace();
 		}
@@ -65,6 +63,14 @@ public class DatabaseUtils {
 		}
 	}
 
+	public static void closeQuietly( Statement statement ) {
+		try {
+			statement.close();
+		} catch ( SQLException e ) {
+			e.printStackTrace();
+		}
+	}
+
 	public static void closeQuietly( ResultSet resultSet ) {
 		try {
 			resultSet.close();
@@ -72,5 +78,4 @@ public class DatabaseUtils {
 			e.printStackTrace();
 		}
 	}
-
 }

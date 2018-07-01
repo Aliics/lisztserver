@@ -24,12 +24,19 @@ public class RequestHandler {
 		String parsedParam = param.split( " " )[ 0 ];
 		String dataRetrieved = null;
 		boolean updateSuccess = false;
+		boolean deletionSuccess = false;
+
+		try {
+			Class.forName( "com.mysql.jdbc.Driver" );
+		} catch ( ClassNotFoundException e ) {
+			e.printStackTrace();
+		}
 
 		switch ( requestType ) {
 			case RequestType.LIST_RETRIEVE:
 				String retrieveAllFromListData = "SELECT content FROM lists WHERE id='" + parsedParam + "'";
 
-				Connection connection = DatabaseUtils.connectToDatabase( "webapps/config.properties" );
+				Connection connection = DatabaseUtils.connectToDatabase( "/var/lib/tomcat8/webapps/config.properties" );
 				ResultSet resultSet = DatabaseUtils.generateResultSetFromSqlAndConnection( connection, retrieveAllFromListData );
 
 				try {
@@ -44,7 +51,10 @@ public class RequestHandler {
 
 				break;
 			case RequestType.LIST_UPDATE:
-				updateSuccess = false;
+				updateSuccess = true;
+				break;
+			case RequestType.LIST_DELETE:
+				deletionSuccess = true;
 				break;
 			default:
 				parsedRequestType = null;
@@ -59,6 +69,7 @@ public class RequestHandler {
 		jsonRequestReply.put( "parsed-param", parsedParam );
 		jsonRequestReply.put( "data-retrieved-from-params", dataRetrieved );
 		jsonRequestReply.put( "data-update-success", updateSuccess );
+		jsonRequestReply.put( "data-delete-success", deletionSuccess );
 
 		return jsonRequestReply.toString();
 	}
