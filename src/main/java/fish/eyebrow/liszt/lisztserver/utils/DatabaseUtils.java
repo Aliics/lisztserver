@@ -6,19 +6,6 @@ import java.sql.*;
 import java.util.Properties;
 
 public class DatabaseUtils {
-	public static ResultSet generateResultSetFromSqlAndConnection( Connection connection, String sql ) {
-		ResultSet resultSet = null;
-
-		try {
-			Statement statement = connection.createStatement();
-			resultSet = statement.executeQuery( sql );
-		} catch ( SQLException e ) {
-			e.printStackTrace();
-		}
-
-		return resultSet;
-	}
-
 	public static Connection connectToDatabase( String dbUrl, String dbName, String configPath ) {
 		Connection connection = null;
 
@@ -57,7 +44,8 @@ public class DatabaseUtils {
 
 	public static void closeQuietly( Connection connection ) {
 		try {
-			connection.close();
+			if ( connection != null )
+				connection.close();
 		} catch ( SQLException e ) {
 			e.printStackTrace();
 		}
@@ -65,7 +53,8 @@ public class DatabaseUtils {
 
 	public static void closeQuietly( Statement statement ) {
 		try {
-			statement.close();
+			if ( statement != null )
+				statement.close();
 		} catch ( SQLException e ) {
 			e.printStackTrace();
 		}
@@ -73,7 +62,8 @@ public class DatabaseUtils {
 
 	public static void closeQuietly( ResultSet resultSet ) {
 		try {
-			resultSet.close();
+			if ( resultSet != null )
+				resultSet.close();
 		} catch ( SQLException e ) {
 			e.printStackTrace();
 		}

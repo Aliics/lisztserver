@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 @Path( "/request/{requestType}" )
 @SuppressWarnings( "unchecked" )
@@ -36,16 +37,21 @@ public class RequestHandler {
 			case RequestType.LIST_RETRIEVE:
 				String retrieveAllFromListData = "SELECT content FROM lists WHERE id='" + parsedParam + "'";
 
-				Connection connection = DatabaseUtils.connectToDatabase( "/var/lib/tomcat8/webapps/config.properties" );
-				ResultSet resultSet = DatabaseUtils.generateResultSetFromSqlAndConnection( connection, retrieveAllFromListData );
-
+				ResultSet resultSet = null;
+				Connection connection = null;
+				Statement statement = null;
 				try {
+					connection = DatabaseUtils.connectToDatabase( "/var/lib/tomcat8/webapps/config.properties" );
+					statement = connection.createStatement();
+					resultSet = statement.executeQuery( retrieveAllFromListData );
+
 					if ( resultSet.next() )
 						dataRetrieved = resultSet.getString( "content" );
 				} catch ( SQLException e ) {
 					e.printStackTrace();
 				} finally {
 					DatabaseUtils.closeQuietly( resultSet );
+					DatabaseUtils.closeQuietly( statement );
 					DatabaseUtils.closeQuietly( connection );
 				}
 
